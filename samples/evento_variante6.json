@@ -1,0 +1,7 @@
+{
+  "pedido_id": "PED-1029",
+  "comercio_id": "COM-084",
+  "inicio_preparacion": "2026-10-21T19:00:00Z",
+  "fin_preparacion": "2026-10-21T19:25:00Z",
+  "pedidos_en_cola": 5
+}
