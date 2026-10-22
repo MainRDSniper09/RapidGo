@@ -1,0 +1,20 @@
+# ============================================================
+# RapidGo - Dependencias Python
+# Proyecto Final Big Data
+# ============================================================
+
+# Kafka
+confluent-kafka==2.16.0
+
+# Spark
+pyspark==4.2.0
+
+# Validación de contratos JSON
+jsonschema>=4.23,<5
+
+# Variables de entorno
+python-dotenv>=1.0,<2
+
+# Pruebas automatizadas
+pytest>=8.0,<9
+pytest-cov>=5.0,<7
