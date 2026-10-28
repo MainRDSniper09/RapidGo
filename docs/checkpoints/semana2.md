@@ -142,11 +142,11 @@ No requieren Kafka, por lo que corren en GitHub Actions.
 
 ## Evidencia de ejecución 
 
-
-
 - Fecha y `ejecucion_id`:
 - Salida de `kafka-init` / `--describe`:
 - Resumen del producer (enviados, confirmados, distribución por partición):
-- Salida de `kafka-get-offsets.sh`:
-- 3 mensajes leídos con partición/offset/key:
-- Observación: ¿la distribución por partición está balanceada? (ver riesgo de *hot partition* en ADR-001)
+  ![alt text](Ejecucion_Kafka.png)
+
+  ![alt text](Ejecucion_Docker.png)
+
+  ![alt text](Pruebas.png)
