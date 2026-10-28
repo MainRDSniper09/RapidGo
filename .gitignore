@@ -218,3 +218,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ============================================================
+# RapidGo - Archivos propios del proyecto
+# ============================================================
+
+# Visual Studio (configuración local de cada integrante)
+.vs/
+*.suo
+*.user
+
+# Visual Studio Code / JetBrains
+.vscode/
+.idea/
+
+# Datos generados por el pipeline (NO se versionan).
+# Solo se conserva la documentación del Data Lake.
+datalake/**
+!datalake/**/
+!datalake/**/README.md
+!datalake/**/.gitkeep
+
+# Checkpoints de Spark Structured Streaming
+checkpoints/
+**/_spark_metadata/
