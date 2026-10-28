@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/MainRDSniper09/RapidGo/samples/contrato_evento_variante6.schema.json",
+  "title": "Evento de preparación de pedidos - RapidGo Variante 6",
+  "description": "Contrato del evento publicado en el topic preparacion_pedidos. Un evento se emite cuando un comercio termina de preparar un pedido.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evento_id",
+    "equipo_id",
+    "ejecucion_id",
+    "version_contrato",
+    "timestamp_evento",
+    "pedido_id",
+    "comercio_id",
+    "inicio_preparacion",
+    "fin_preparacion",
+    "pedidos_en_cola"
+  ],
+  "properties": {
+    "evento_id": {
+      "description": "Identificador único del evento (UUID v4). Permite detectar duplicados.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "equipo_id": {
+      "description": "Identificador del equipo que generó el evento.",
+      "type": "string",
+      "minLength": 1
+    },
+    "ejecucion_id": {
+      "description": "Identificador de la ejecución del producer que generó el evento.",
+      "type": "string",
+      "minLength": 1
+    },
+    "version_contrato": {
+      "description": "Versión del contrato del evento.",
+      "type": "string",
+      "const": "1.0"
+    },
+    "timestamp_evento": {
+      "description": "Momento (UTC, ISO-8601) en que se emitió el evento. Se usa como event-time en Spark.",
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "pedido_id": {
+      "type": "string",
+      "pattern": "^PED-\\d+$"
+    },
+    "comercio_id": {
+      "description": "Comercio que prepara el pedido. Es la KEY del mensaje en Kafka (ADR-001).",
+      "type": "string",
+      "pattern": "^COM-\\d{3}$"
+    },
+    "inicio_preparacion": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "fin_preparacion": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "pedidos_en_cola": {
+      "description": "Pedidos pendientes en el comercio en el momento del evento (backlog).",
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

@@ -62,3 +62,24 @@ SPARK STRUCTURED STREAMING
             |
             v
      INDICADORES / ALERTAS
+```
+
+---
+
+## Ejecución rápida (Semana 2)
+
+```powershell
+docker compose up -d                       # Kafka + creación del topic + Spark
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m producer --eventos 100 --intervalo 0.2
+pytest -v
+```
+
+| Componente | Documentación |
+|------------|---------------|
+| Producer / Kafka | [`producer/README.md`](producer/README.md) |
+| Contrato del evento | [`samples/contrato_evento_variante6.schema.json`](samples/contrato_evento_variante6.schema.json) |
+| Decisión topic / key / particiones | [`docs/decisions/ADR-001-kafka.md`](docs/decisions/ADR-001-kafka.md) |
+

@@ -1,0 +1,1812 @@
+From c0bfc373e8ccbbfc0d01b7cab82b7a1e4d819626 Mon Sep 17 00:00:00 2001
+From: Nicolas Barreto <nicolas@example.com>
+Date: Wed, 28 Oct 2026 19:24:07 +0000
+Subject: [PATCH 1/2] fix(#9): quitar carpeta .vs del repositorio y ampliar
+ .gitignore
+
+---
+ .gitignore                                    |  24 ++++++
+ ...44642e1c-3aa8-4985-98a4-733a64193ad9.vsidx | Bin 17955 -> 0 bytes
+ .vs/RapidGo.slnx/v18/.wsuo                    | Bin 12800 -> 0 bytes
+ .vs/RapidGo.slnx/v18/DocumentLayout.json      |  23 ------
+ ...3d06fa6d-e413-409c-bb4d-16c4cbd644ff.vsidx | Bin 194 -> 0 bytes
+ ...8afc01a7-9274-4c50-9e2e-42a6ae5e0042.vsidx | Bin 192 -> 0 bytes
+ ...8f826dee-8e33-4b15-bbb9-590d1d3cd704.vsidx | Bin 17955 -> 0 bytes
+ ...90d37f7b-7f52-400b-a462-6e0450dcc809.vsidx | Bin 107 -> 0 bytes
+ ...dc10386f-12cf-4d31-b914-96ae1840c282.vsidx | Bin 194 -> 0 bytes
+ .vs/RapidGo/v18/.wsuo                         | Bin 16384 -> 0 bytes
+ .vs/RapidGo/v18/DocumentLayout.json           |  71 ------------------
+ .vs/VSWorkspaceState.json                     |   8 --
+ .vs/slnx.sqlite                               | Bin 90112 -> 0 bytes
+ 13 files changed, 24 insertions(+), 102 deletions(-)
+ delete mode 100644 .vs/RapidGo.slnx/FileContentIndex/44642e1c-3aa8-4985-98a4-733a64193ad9.vsidx
+ delete mode 100644 .vs/RapidGo.slnx/v18/.wsuo
+ delete mode 100644 .vs/RapidGo.slnx/v18/DocumentLayout.json
+ delete mode 100644 .vs/RapidGo/FileContentIndex/3d06fa6d-e413-409c-bb4d-16c4cbd644ff.vsidx
+ delete mode 100644 .vs/RapidGo/FileContentIndex/8afc01a7-9274-4c50-9e2e-42a6ae5e0042.vsidx
+ delete mode 100644 .vs/RapidGo/FileContentIndex/8f826dee-8e33-4b15-bbb9-590d1d3cd704.vsidx
+ delete mode 100644 .vs/RapidGo/FileContentIndex/90d37f7b-7f52-400b-a462-6e0450dcc809.vsidx
+ delete mode 100644 .vs/RapidGo/FileContentIndex/dc10386f-12cf-4d31-b914-96ae1840c282.vsidx
+ delete mode 100644 .vs/RapidGo/v18/.wsuo
+ delete mode 100644 .vs/RapidGo/v18/DocumentLayout.json
+ delete mode 100644 .vs/VSWorkspaceState.json
+ delete mode 100644 .vs/slnx.sqlite
+
+diff --git a/.gitignore b/.gitignore
+index 6f596e1..eb013e0 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -218,3 +218,27 @@ __marimo__/
+ 
+ # Streamlit
+ .streamlit/secrets.toml
++
++# ============================================================
++# RapidGo - Archivos propios del proyecto
++# ============================================================
++
++# Visual Studio (configuración local de cada integrante)
++.vs/
++*.suo
++*.user
++
++# Visual Studio Code / JetBrains
++.vscode/
++.idea/
++
++# Datos generados por el pipeline (NO se versionan).
++# Solo se conserva la documentación del Data Lake.
++datalake/**
++!datalake/**/
++!datalake/**/README.md
++!datalake/**/.gitkeep
++
++# Checkpoints de Spark Structured Streaming
++checkpoints/
++**/_spark_metadata/
+diff --git a/.vs/RapidGo.slnx/FileContentIndex/44642e1c-3aa8-4985-98a4-733a64193ad9.vsidx b/.vs/RapidGo.slnx/FileContentIndex/44642e1c-3aa8-4985-98a4-733a64193ad9.vsidx
+deleted file mode 100644
+index 2222b1e10854defceaa9f5165cad6ad8c66039e7..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 17955
+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
+AMgRZ+
+
+diff --git a/.vs/RapidGo.slnx/v18/.wsuo b/.vs/RapidGo.slnx/v18/.wsuo
+deleted file mode 100644
+index 119e36d110cffc42f85c18d795e425cc18e31529..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 12800
+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
+UC=%uTG3fchj61_t$CU&B0e)e3qW}N^
+
+diff --git a/.vs/RapidGo.slnx/v18/DocumentLayout.json b/.vs/RapidGo.slnx/v18/DocumentLayout.json
+deleted file mode 100644
+index f5a82f4..0000000
+--- a/.vs/RapidGo.slnx/v18/DocumentLayout.json
++++ /dev/null
+@@ -1,23 +0,0 @@
+-{
+-  "Version": 1,
+-  "WorkspaceRootPath": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\",
+-  "Documents": [],
+-  "DocumentGroupContainers": [
+-    {
+-      "Orientation": 0,
+-      "VerticalTabListWidth": 256,
+-      "DocumentGroups": [
+-        {
+-          "DockedWidth": 200,
+-          "SelectedChildIndex": -1,
+-          "Children": [
+-            {
+-              "$type": "Bookmark",
+-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+-            }
+-          ]
+-        }
+-      ]
+-    }
+-  ]
+-}
+\ No newline at end of file
+diff --git a/.vs/RapidGo/FileContentIndex/3d06fa6d-e413-409c-bb4d-16c4cbd644ff.vsidx b/.vs/RapidGo/FileContentIndex/3d06fa6d-e413-409c-bb4d-16c4cbd644ff.vsidx
+deleted file mode 100644
+index b7a8d04edbaea88230df4c6d1a413845bc411cdf..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 194
+zcmZ>EaTj7>V3-HQAP^0q7{Y<HvsFxJacWU<Oj2S|QEH4!esXDUYF<fkjD<pRYHn(A
+z2~f}}GhHDiu_Q4jD6t?j#XTQRr{pJRrxxiZ=jRsW7pLk~=H_&sUUB?D;$21-s1?jW
+Z8ph^8VuQqC03^>3<rG2bIw;)*r2$gUCb|Fs
+
+diff --git a/.vs/RapidGo/FileContentIndex/8afc01a7-9274-4c50-9e2e-42a6ae5e0042.vsidx b/.vs/RapidGo/FileContentIndex/8afc01a7-9274-4c50-9e2e-42a6ae5e0042.vsidx
+deleted file mode 100644
+index 8f8d2ad0d3b63daeeabe46fc41ac0907a1fee5d4..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 192
+zcmZ>EaTj7>V3-5MAP@<m7(#)xvsFxJacWU<Oj2S|QEH4!esXDUYF<fkjD<pRYHn(A
+z2~f}}GhHDiu_Q4jD6t?j#XTQR7o`@KW)=aJ0X68ARFv?9a$Y@<c$bj{Y5_BlhOs%2
+V*dTEj0Lk-1IR#L<21<88X#i>KB*6dx
+
+diff --git a/.vs/RapidGo/FileContentIndex/8f826dee-8e33-4b15-bbb9-590d1d3cd704.vsidx b/.vs/RapidGo/FileContentIndex/8f826dee-8e33-4b15-bbb9-590d1d3cd704.vsidx
+deleted file mode 100644
+index acad0421c6d09974e389384594bf9989909f105a..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 17955
+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
+
+diff --git a/.vs/RapidGo/FileContentIndex/90d37f7b-7f52-400b-a462-6e0450dcc809.vsidx b/.vs/RapidGo/FileContentIndex/90d37f7b-7f52-400b-a462-6e0450dcc809.vsidx
+deleted file mode 100644
+index c403b3fcd21a6d41c7b9befe31e9f218e2e40091..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 107
+ucmZ>EaTj7>U~mUw5MY5&44g=8W+XNT5*s8A10a3;P>wW|R)^BYP#OS?n*rAV
+
+diff --git a/.vs/RapidGo/FileContentIndex/dc10386f-12cf-4d31-b914-96ae1840c282.vsidx b/.vs/RapidGo/FileContentIndex/dc10386f-12cf-4d31-b914-96ae1840c282.vsidx
+deleted file mode 100644
+index 4202ccde899b3baa517d5226e40926e9ded59f82..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 194
+zcmZ>EaTj7>V3-HQAP^0q7{Y<HvsFxJacWU<Oj2S|QEH4!esXDUYF<fkjD<pRYHn(A
+z2~f}}GhHDiu_Q4jD6t?j#XTQRg9LLDvr}V&Tpe9}UG;KPS}kNh9Z0;($O5&38A!v}
+X97t@CI1GT~`JtR5C|w7oyPz}xuU#bQ
+
+diff --git a/.vs/RapidGo/v18/.wsuo b/.vs/RapidGo/v18/.wsuo
+deleted file mode 100644
+index c128beeaaa326e9d20da0fc0d0b853d9c71e18f7..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 16384
+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
+Mc8rsKSChg20OwEY*Z=?k
+
+diff --git a/.vs/RapidGo/v18/DocumentLayout.json b/.vs/RapidGo/v18/DocumentLayout.json
+deleted file mode 100644
+index f2f1c01..0000000
+--- a/.vs/RapidGo/v18/DocumentLayout.json
++++ /dev/null
+@@ -1,71 +0,0 @@
+-{
+-  "Version": 1,
+-  "WorkspaceRootPath": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\",
+-  "Documents": [
+-    {
+-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\datalake\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:datalake\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+-    },
+-    {
+-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+-    },
+-    {
+-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
+-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
+-    }
+-  ],
+-  "DocumentGroupContainers": [
+-    {
+-      "Orientation": 0,
+-      "VerticalTabListWidth": 256,
+-      "DocumentGroups": [
+-        {
+-          "DockedWidth": 200,
+-          "SelectedChildIndex": 0,
+-          "Children": [
+-            {
+-              "$type": "Document",
+-              "DocumentIndex": 0,
+-              "Title": "README.md",
+-              "DocumentMoniker": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\datalake\\README.md",
+-              "RelativeDocumentMoniker": "datalake\\README.md",
+-              "ToolTip": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\datalake\\README.md",
+-              "RelativeToolTip": "datalake\\README.md",
+-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+-              "WhenOpened": "2026-10-22T01:01:46.275Z",
+-              "EditorCaption": ""
+-            },
+-            {
+-              "$type": "Document",
+-              "DocumentIndex": 1,
+-              "Title": "requirements.txt",
+-              "DocumentMoniker": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\requirements.txt",
+-              "RelativeDocumentMoniker": "requirements.txt",
+-              "ToolTip": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\requirements.txt",
+-              "RelativeToolTip": "requirements.txt",
+-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+-              "WhenOpened": "2026-10-22T01:01:12.703Z",
+-              "EditorCaption": ""
+-            },
+-            {
+-              "$type": "Document",
+-              "DocumentIndex": 2,
+-              "Title": "docker-compose.yml",
+-              "DocumentMoniker": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\docker-compose.yml",
+-              "RelativeDocumentMoniker": "docker-compose.yml",
+-              "ToolTip": "C:\\Users\\barre\\Documents\\8 semestre\\Big data\\RapidGo\\RapidGo\\docker-compose.yml",
+-              "RelativeToolTip": "docker-compose.yml",
+-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+-              "WhenOpened": "2026-10-22T01:00:50.403Z",
+-              "EditorCaption": ""
+-            }
+-          ]
+-        }
+-      ]
+-    }
+-  ]
+-}
+\ No newline at end of file
+diff --git a/.vs/VSWorkspaceState.json b/.vs/VSWorkspaceState.json
+deleted file mode 100644
+index f1b4b4e..0000000
+--- a/.vs/VSWorkspaceState.json
++++ /dev/null
+@@ -1,8 +0,0 @@
+-{
+-  "ExpandedNodes": [
+-    "",
+-    "\\datalake"
+-  ],
+-  "SelectedNode": "\\datalake\\README.md",
+-  "PreviewInSolutionExplorer": false
+-}
+\ No newline at end of file
+diff --git a/.vs/slnx.sqlite b/.vs/slnx.sqlite
+deleted file mode 100644
+index f144976571bfbf6f27f0fef7aaf140f0ef45876a..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 90112
+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
+
+-- 
+2.43.0
+
+
+From b8980191d1ec150a24002a4981fa80ffeaef738c Mon Sep 17 00:00:00 2001
+From: Nicolas Barreto <nicolas@example.com>
+Date: Wed, 28 Oct 2026 19:24:07 +0000
+Subject: [PATCH 2/2] =?UTF-8?q?feat(#9):=20producer=20Kafka=20con=20key=20?=
+ =?UTF-8?q?comercio=5Fid,=20topic=20de=203=20particiones=20y=20validaci?=
+ =?UTF-8?q?=C3=B3n=20de=20contrato?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- producer/: generador de eventos, envío a Kafka con reporte de partición/offset
+- samples/: JSON Schema del contrato y ejemplo actualizado (equipo_id, ejecucion_id, evento_id)
+- docker-compose: servicio kafka-init que crea preparacion_pedidos (3 particiones)
+- tests/test_producer.py: 17 pruebas sin dependencia de Kafka
+- Documentación de ejecución en producer/README.md
+
+Closes #9
+---
+ .env.example                                  |  10 +
+ README.md                                     |  23 ++-
+ docker-compose.yml                            |  34 +++-
+ producer/README.md                            | 153 +++++++++++++++
+ producer/__init__.py                          |   1 +
+ producer/__main__.py                          |   7 +
+ producer/config.py                            |  38 ++++
+ producer/generador.py                         | 153 +++++++++++++++
+ producer/kafka_producer.py                    | 174 ++++++++++++++++++
+ producer/topic_admin.py                       |  76 ++++++++
+ pytest.ini                                    |   4 +
+ samples/contrato_evento_variante6.schema.json |  69 +++++++
+ samples/evento_variante6.json                 |   7 +-
+ tests/__init__.py                             |   0
+ tests/test_producer.py                        | 165 +++++++++++++++++
+ 15 files changed, 910 insertions(+), 4 deletions(-)
+ create mode 100644 .env.example
+ create mode 100644 producer/README.md
+ create mode 100644 producer/__init__.py
+ create mode 100644 producer/__main__.py
+ create mode 100644 producer/config.py
+ create mode 100644 producer/generador.py
+ create mode 100644 producer/kafka_producer.py
+ create mode 100644 producer/topic_admin.py
+ create mode 100644 pytest.ini
+ create mode 100644 samples/contrato_evento_variante6.schema.json
+ create mode 100644 tests/__init__.py
+ create mode 100644 tests/test_producer.py
+
+diff --git a/.env.example b/.env.example
+new file mode 100644
+index 0000000..465a642
+--- /dev/null
++++ b/.env.example
+@@ -0,0 +1,10 @@
++# Copiar como .env y ajustar si es necesario (el .env NO se sube a GitHub)
++
++# Desde Windows/host: localhost:9092
++# Desde un contenedor dentro de rapidgo-net: kafka:19092
++KAFKA_BOOTSTRAP_SERVERS=localhost:9092
++KAFKA_TOPIC=preparacion_pedidos
++KAFKA_PARTICIONES=3
++KAFKA_REPLICACION=1
++
++EQUIPO_ID=rapidgo-v6
+diff --git a/README.md b/README.md
+index ac44a54..4d19802 100644
+--- a/README.md
++++ b/README.md
+@@ -61,4 +61,25 @@ SPARK STRUCTURED STREAMING
+     calidad -> agregación -> reporte
+             |
+             v
+-     INDICADORES / ALERTAS
+\ No newline at end of file
++     INDICADORES / ALERTAS
++```
++
++---
++
++## Ejecución rápida (Semana 2)
++
++```powershell
++docker compose up -d                       # Kafka + creación del topic + Spark
++python -m venv .venv
++.\.venv\Scripts\Activate.ps1
++pip install -r requirements.txt
++python -m producer --eventos 100 --intervalo 0.2
++pytest -v
++```
++
++| Componente | Documentación |
++|------------|---------------|
++| Producer / Kafka | [`producer/README.md`](producer/README.md) |
++| Contrato del evento | [`samples/contrato_evento_variante6.schema.json`](samples/contrato_evento_variante6.schema.json) |
++| Decisión topic / key / particiones | [`docs/decisions/ADR-001-kafka.md`](docs/decisions/ADR-001-kafka.md) |
++
+diff --git a/docker-compose.yml b/docker-compose.yml
+index 2beb4ed..0c67385 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -59,6 +59,36 @@ services:
+       retries: 10
+ 
+ 
++  # ==========================================================
++  # KAFKA INIT - Crea el topic definido en ADR-001
++  # (auto-create está desactivado, por eso se crea explícitamente)
++  # Se ejecuta una vez y termina.
++  # ==========================================================
++  kafka-init:
++    image: apache/kafka:4.3.1
++    container_name: rapidgo-kafka-init
++
++    depends_on:
++      kafka:
++        condition: service_healthy
++
++    entrypoint: ["/bin/sh", "-c"]
++    command:
++      - |
++        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:19092 \
++          --create --if-not-exists \
++          --topic preparacion_pedidos \
++          --partitions 3 \
++          --replication-factor 1
++        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:19092 \
++          --describe --topic preparacion_pedidos
++
++    networks:
++      - rapidgo-net
++
++    restart: "no"
++
++
+   # ==========================================================
+   # SPARK MASTER
+   # ==========================================================
+@@ -68,8 +98,8 @@ services:
+     hostname: spark-master
+ 
+     depends_on:
+-      kafka:
+-        condition: service_healthy
++      kafka-init:
++        condition: service_completed_successfully
+ 
+     command:
+       - /opt/spark/bin/spark-class
+diff --git a/producer/README.md b/producer/README.md
+new file mode 100644
+index 0000000..bdd9a6c
+--- /dev/null
++++ b/producer/README.md
+@@ -0,0 +1,153 @@
++# Producer RapidGo - Variante 6 (Preparación de pedidos)
++
++Generador de eventos que publica en Kafka los pedidos cuya preparación
++terminó en un comercio. Implementa el **Issue #9**.
++
++| Parámetro      | Valor                  | Origen   |
++|----------------|------------------------|----------|
++| Topic          | `preparacion_pedidos`  | ADR-001  |
++| Key            | `comercio_id`          | ADR-001  |
++| Particiones    | 3                      | ADR-001  |
++| Contrato       | `samples/contrato_evento_variante6.schema.json` | Semana 1 |
++| Particionador  | `murmur2_random` (igual al cliente Java de Kafka) | Issue #9 |
++
++## Estructura
++
++```text
++producer/
++├── __main__.py        # permite: python -m producer
++├── config.py          # topic, key, bootstrap, equipo (variables de entorno)
++├── generador.py       # crea y valida eventos (no depende de Kafka)
++├── kafka_producer.py  # envía a Kafka, imprime partición/offset y resumen
++└── topic_admin.py     # crea/describe el topic desde Python (alternativa)
++```
++
++## Contrato del evento
++
++```json
++{
++  "evento_id": "8f14e45f-ceea-4a7b-9c3d-2b1e6a0d7c55",
++  "equipo_id": "rapidgo-v6",
++  "ejecucion_id": "run-20261021-190000",
++  "version_contrato": "1.0",
++  "timestamp_evento": "2026-10-21T19:25:00Z",
++  "pedido_id": "PED-1029",
++  "comercio_id": "COM-084",
++  "inicio_preparacion": "2026-10-21T19:00:00Z",
++  "fin_preparacion": "2026-10-21T19:25:00Z",
++  "pedidos_en_cola": 5
++}
++```
++
++Se conservaron los 5 campos de la Semana 1 y se agregaron:
++
++- `evento_id`: UUID para detectar duplicados en Spark.
++- `equipo_id` / `ejecucion_id`: hacen los eventos identificables por equipo y ejecución.
++- `version_contrato`: permite evolucionar el contrato sin romper Spark.
++- `timestamp_evento`: event-time para las ventanas de Spark (Issue #10).
++
++Cada evento se valida contra el JSON Schema **antes** de enviarse;
++los inválidos se descartan y se cuentan en el resumen.
++
++### Simulación
++
++Se simulan 12 comercios: `COM-001` a `COM-010` normales (~15 min de preparación,
++cola ~3) y `COM-011`, `COM-012` **críticos** (~30 min, cola ~9-12, el triple de
++volumen). Así Spark tendrá datos para disparar las alertas de *tiempo de
++preparación excedido* y *acumulación de pedidos*.
++
++## Ejecución paso a paso
++
++> Comandos para PowerShell (Windows). En Linux/macOS cambia la activación
++> del entorno por `source .venv/bin/activate`.
++
++### 1. Levantar Kafka (y crear el topic)
++
++```powershell
++docker compose up -d
++docker logs rapidgo-kafka-init
++```
++
++El servicio `kafka-init` crea el topic con 3 particiones y lo describe.
++Salida esperada:
++
++```text
++Created topic preparacion_pedidos.
++Topic: preparacion_pedidos  PartitionCount: 3  ReplicationFactor: 1 ...
++```
++
++Alternativa desde Python (si no se usa `kafka-init`):
++
++```powershell
++python -m producer.topic_admin
++```
++
++### 2. Preparar el entorno Python
++
++```powershell
++python -m venv .venv
++.\.venv\Scripts\Activate.ps1
++pip install -r requirements.txt
++copy .env.example .env   # opcional
++```
++
++### 3. Ejecutar el producer
++
++```powershell
++# 100 eventos, uno cada 0.2 s, semilla fija (reproducible)
++python -m producer --eventos 100 --intervalo 0.2 --seed 6
++
++# Modo continuo (Ctrl+C para detener) - útil mientras corre Spark
++python -m producer --continuo --intervalo 0.5
++
++# Sin Kafka: solo genera e imprime eventos
++python -m producer --dry-run --eventos 5 --intervalo 0
++```
++
++Cada confirmación del broker se imprime así:
++
++```text
++[OK] topic=preparacion_pedidos particion=1 offset=42 key=COM-012
++```
++
++Al final aparece un resumen con la distribución por partición.
++
++### 4. Verificar en Kafka
++
++```powershell
++# Describir el topic (particiones, líder, réplicas)
++docker exec rapidgo-kafka /opt/kafka/bin/kafka-topics.sh `
++  --bootstrap-server localhost:9092 --describe --topic preparacion_pedidos
++
++# Último offset de cada partición (cuántos mensajes hay en cada una)
++docker exec rapidgo-kafka /opt/kafka/bin/kafka-get-offsets.sh `
++  --bootstrap-server localhost:9092 --topic preparacion_pedidos
++
++# Leer 5 eventos mostrando partición, offset y key
++docker exec rapidgo-kafka /opt/kafka/bin/kafka-console-consumer.sh `
++  --bootstrap-server localhost:9092 --topic preparacion_pedidos `
++  --from-beginning --max-messages 5 `
++  --formatter-property print.partition=true `
++  --formatter-property print.offset=true `
++  --formatter-property print.key=true
++```
++
++### 5. Pruebas
++
++```powershell
++pytest -v tests/test_producer.py
++```
++
++No requieren Kafka, por lo que corren en GitHub Actions.
++
++## Evidencia de ejecución (completar con datos reales)
++
++> La guía exige evidencia propia: valores, offsets y logs reales del equipo.
++> Pegar aquí la salida de los comandos anteriores o enlazar capturas en `docs/`.
++
++- Fecha y `ejecucion_id`:
++- Salida de `kafka-init` / `--describe`:
++- Resumen del producer (enviados, confirmados, distribución por partición):
++- Salida de `kafka-get-offsets.sh`:
++- 3 mensajes leídos con partición/offset/key:
++- Observación: ¿la distribución por partición está balanceada? (ver riesgo de *hot partition* en ADR-001)
+diff --git a/producer/__init__.py b/producer/__init__.py
+new file mode 100644
+index 0000000..04f29a2
+--- /dev/null
++++ b/producer/__init__.py
+@@ -0,0 +1 @@
++"""Producer de eventos RapidGo - Variante 6 (Preparación de pedidos)."""
+diff --git a/producer/__main__.py b/producer/__main__.py
+new file mode 100644
+index 0000000..6a52cc8
+--- /dev/null
++++ b/producer/__main__.py
+@@ -0,0 +1,7 @@
++"""Permite ejecutar el producer con: python -m producer [opciones]"""
++
++import sys
++
++from producer.kafka_producer import main
++
++sys.exit(main())
+diff --git a/producer/config.py b/producer/config.py
+new file mode 100644
+index 0000000..649015b
+--- /dev/null
++++ b/producer/config.py
+@@ -0,0 +1,38 @@
++"""
++Configuración del Producer.
++
++Todos los valores se pueden sobreescribir con variables de entorno o con
++un archivo .env en la raíz del proyecto (ver .env.example).
++
++Decisiones tomadas en ADR-001:
++    - Topic:       preparacion_pedidos
++    - Key:         comercio_id
++    - Particiones: 3
++"""
++
++import os
++from pathlib import Path
++
++try:
++    from dotenv import load_dotenv
++
++    load_dotenv()
++except ImportError:  # python-dotenv es opcional en tiempo de ejecución
++    pass
++
++RAIZ_PROYECTO = Path(__file__).resolve().parent.parent
++
++# --- Kafka -----------------------------------------------------------------
++# Desde Windows/host se usa el listener HOST (localhost:9092).
++# Desde otro contenedor de la red rapidgo-net se usa kafka:19092.
++KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
++KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "preparacion_pedidos")
++KAFKA_PARTICIONES = int(os.getenv("KAFKA_PARTICIONES", "3"))
++KAFKA_REPLICACION = int(os.getenv("KAFKA_REPLICACION", "1"))
++
++# --- Identificación del equipo ---------------------------------------------
++EQUIPO_ID = os.getenv("EQUIPO_ID", "rapidgo-v6")
++
++# --- Contrato ---------------------------------------------------------------
++RUTA_SCHEMA = RAIZ_PROYECTO / "samples" / "contrato_evento_variante6.schema.json"
++VERSION_CONTRATO = "1.0"
+diff --git a/producer/generador.py b/producer/generador.py
+new file mode 100644
+index 0000000..0477ce6
+--- /dev/null
++++ b/producer/generador.py
+@@ -0,0 +1,153 @@
++"""
++Generador de eventos de preparación de pedidos (Variante 6).
++
++Este módulo NO depende de Kafka: solo construye y valida eventos.
++Así se puede probar con pytest en GitHub Actions sin levantar un broker.
++
++Modelo de simulación
++--------------------
++Se simula un conjunto fijo de comercios. Algunos son "críticos": preparan
++más lento y acumulan más cola. Esto es intencional para que, en el Issue #10,
++Spark pueda disparar las alertas de:
++    - tiempo de preparación excedido
++    - acumulación de pedidos (backlog)
++
++Cada evento representa un pedido cuya preparación acaba de terminar:
++    fin_preparacion   = ahora
++    inicio_preparacion = ahora - duración simulada
++"""
++
++from __future__ import annotations
++
++import json
++import random
++import uuid
++from dataclasses import dataclass
++from datetime import datetime, timedelta, timezone
++from functools import lru_cache
++from pathlib import Path
++
++from jsonschema import Draft202012Validator
++
++from producer import config
++
++FORMATO_FECHA = "%Y-%m-%dT%H:%M:%SZ"
++
++
++@dataclass(frozen=True)
++class PerfilComercio:
++    """Comportamiento simulado de un comercio."""
++
++    comercio_id: str
++    minutos_promedio: float  # tiempo medio de preparación
++    minutos_desviacion: float
++    cola_promedio: int  # pedidos en cola típicos
++    critico: bool
++
++
++# 10 comercios normales + 2 críticos (COM-011 y COM-012).
++COMERCIOS: tuple[PerfilComercio, ...] = tuple(
++    PerfilComercio(f"COM-{i:03d}", 15.0, 4.0, 3, False) for i in range(1, 11)
++) + (
++    PerfilComercio("COM-011", 32.0, 6.0, 9, True),
++    PerfilComercio("COM-012", 28.0, 7.0, 12, True),
++)
++
++
++def formatear_fecha(fecha: datetime) -> str:
++    """datetime -> '2026-10-21T19:25:00Z' (siempre UTC, sin microsegundos)."""
++    return fecha.astimezone(timezone.utc).strftime(FORMATO_FECHA)
++
++
++def parsear_fecha(texto: str) -> datetime:
++    """'2026-10-21T19:25:00Z' -> datetime UTC."""
++    return datetime.strptime(texto, FORMATO_FECHA).replace(tzinfo=timezone.utc)
++
++
++def nuevo_ejecucion_id(ahora: datetime | None = None) -> str:
++    """Identificador legible de la ejecución: run-AAAAMMDD-HHMMSS-xxxx."""
++    ahora = ahora or datetime.now(timezone.utc)
++    return f"run-{ahora:%Y%m%d-%H%M%S}-{uuid.uuid4().hex[:4]}"
++
++
++class GeneradorEventos:
++    """
++    Genera eventos válidos según el contrato de la Variante 6.
++
++    Se le puede pasar una semilla (seed) para obtener resultados
++    reproducibles, útil en pruebas y demostraciones.
++    """
++
++    def __init__(
++        self,
++        equipo_id: str = config.EQUIPO_ID,
++        ejecucion_id: str | None = None,
++        seed: int | None = None,
++    ) -> None:
++        self.equipo_id = equipo_id
++        self.ejecucion_id = ejecucion_id or nuevo_ejecucion_id()
++        self._rnd = random.Random(seed)
++        self._secuencia_pedido = self._rnd.randint(1000, 5000)
++
++    def _siguiente_pedido_id(self) -> str:
++        self._secuencia_pedido += 1
++        return f"PED-{self._secuencia_pedido}"
++
++    def generar(self, ahora: datetime | None = None) -> dict:
++        """Construye un evento (dict) listo para serializar a JSON."""
++        ahora = (ahora or datetime.now(timezone.utc)).replace(microsecond=0)
++
++        # Los comercios críticos aparecen un poco más (más volumen = más presión).
++        pesos = [3 if c.critico else 1 for c in COMERCIOS]
++        comercio = self._rnd.choices(COMERCIOS, weights=pesos, k=1)[0]
++
++        # Duración de preparación: normal truncada a mínimo 2 minutos.
++        minutos = max(2.0, self._rnd.gauss(comercio.minutos_promedio, comercio.minutos_desviacion))
++        inicio = ahora - timedelta(minutes=round(minutos, 1))
++
++        # Cola: variación alrededor del promedio, nunca negativa.
++        cola = max(0, comercio.cola_promedio + self._rnd.randint(-3, 4))
++
++        return {
++            "evento_id": str(uuid.UUID(int=self._rnd.getrandbits(128), version=4)),
++            "equipo_id": self.equipo_id,
++            "ejecucion_id": self.ejecucion_id,
++            "version_contrato": config.VERSION_CONTRATO,
++            "timestamp_evento": formatear_fecha(ahora),
++            "pedido_id": self._siguiente_pedido_id(),
++            "comercio_id": comercio.comercio_id,
++            "inicio_preparacion": formatear_fecha(inicio),
++            "fin_preparacion": formatear_fecha(ahora),
++            "pedidos_en_cola": cola,
++        }
++
++
++# --------------------------------------------------------------------------
++# Validación del contrato
++# --------------------------------------------------------------------------
++@lru_cache(maxsize=1)
++def _validador(ruta_schema: str = str(config.RUTA_SCHEMA)) -> Draft202012Validator:
++    schema = json.loads(Path(ruta_schema).read_text(encoding="utf-8"))
++    Draft202012Validator.check_schema(schema)
++    return Draft202012Validator(schema)
++
++
++def errores_contrato(evento: dict) -> list[str]:
++    """
++    Devuelve la lista de errores del evento. Lista vacía = evento válido.
++
++    Además del JSON Schema, valida una regla que el schema no puede
++    expresar: fin_preparacion no puede ser anterior a inicio_preparacion.
++    """
++    errores = [
++        f"{'/'.join(map(str, e.path)) or '(raíz)'}: {e.message}"
++        for e in _validador().iter_errors(evento)
++    ]
++    if not errores:
++        if parsear_fecha(evento["fin_preparacion"]) < parsear_fecha(evento["inicio_preparacion"]):
++            errores.append("fin_preparacion es anterior a inicio_preparacion")
++    return errores
++
++
++def es_valido(evento: dict) -> bool:
++    return not errores_contrato(evento)
+diff --git a/producer/kafka_producer.py b/producer/kafka_producer.py
+new file mode 100644
+index 0000000..22709ad
+--- /dev/null
++++ b/producer/kafka_producer.py
+@@ -0,0 +1,174 @@
++"""
++Producer de eventos RapidGo - Variante 6 (Preparación de pedidos).
++
++Genera eventos válidos según el contrato de samples/ y los publica en el
++topic de Kafka usando comercio_id como KEY (ADR-001), para que todos los
++eventos de un mismo comercio caigan en la misma partición y conserven orden.
++
++Ejemplos (desde la raíz del repositorio):
++    python -m producer                         # 50 eventos, 0.5 s entre cada uno
++    python -m producer --eventos 200 --intervalo 0.1
++    python -m producer --continuo              # hasta Ctrl+C
++    python -m producer --eventos 20 --seed 42  # reproducible
++    python -m producer --dry-run --eventos 5   # sin Kafka, solo imprime
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++import signal
++import sys
++import time
++from collections import Counter
++
++from producer import config
++from producer.generador import GeneradorEventos, errores_contrato
++
++
++def serializar(evento: dict) -> tuple[bytes, bytes]:
++    """Devuelve (key, value) en bytes. La key es el comercio_id (ADR-001)."""
++    key = evento["comercio_id"].encode("utf-8")
++    value = json.dumps(evento, ensure_ascii=False).encode("utf-8")
++    return key, value
++
++
++def construir_producer(bootstrap: str):
++    from confluent_kafka import Producer  # import diferido: --dry-run no necesita Kafka
++
++    return Producer(
++        {
++            "bootstrap.servers": bootstrap,
++            "client.id": f"{config.EQUIPO_ID}-producer",
++            # Durabilidad: el broker confirma solo cuando el mensaje quedó escrito.
++            "acks": "all",
++            # Evita duplicados si librdkafka reintenta un envío.
++            "enable.idempotence": True,
++            # Pequeño batching para no enviar mensaje por mensaje.
++            "linger.ms": 20,
++            # Mismo particionador que el cliente Java de Kafka (murmur2).
++            # Así la key -> partición es idéntica a la de kafka-console-producer
++            # y cualquier otra herramienta del ecosistema.
++            "partitioner": "murmur2_random",
++        }
++    )
++
++
++class Estadisticas:
++    """Acumula confirmaciones de entrega para el resumen final."""
++
++    def __init__(self) -> None:
++        self.enviados = 0
++        self.confirmados = 0
++        self.fallidos = 0
++        self.invalidos = 0
++        self.por_particion: Counter[int] = Counter()
++        self.comercios_por_particion: dict[int, set[str]] = {}
++
++    def callback(self, err, msg) -> None:
++        """librdkafka llama este método cuando el broker confirma (o rechaza)."""
++        if err is not None:
++            self.fallidos += 1
++            print(f"[ERROR] Entrega fallida: {err}", file=sys.stderr)
++            return
++        self.confirmados += 1
++        particion = msg.partition()
++        comercio = msg.key().decode("utf-8")
++        self.por_particion[particion] += 1
++        self.comercios_por_particion.setdefault(particion, set()).add(comercio)
++        print(
++            f"[OK] topic={msg.topic()} particion={particion} offset={msg.offset()} "
++            f"key={comercio}"
++        )
++
++    def resumen(self, topic: str, ejecucion_id: str) -> str:
++        lineas = [
++            "",
++            "=" * 64,
++            f" RESUMEN EJECUCIÓN {ejecucion_id}",
++            "=" * 64,
++            f" Topic:        {topic}",
++            f" Enviados:     {self.enviados}",
++            f" Confirmados:  {self.confirmados}",
++            f" Fallidos:     {self.fallidos}",
++            f" Inválidos:    {self.invalidos} (descartados por contrato)",
++            " Distribución por partición:",
++        ]
++        for p in sorted(self.por_particion):
++            comercios = ", ".join(sorted(self.comercios_por_particion[p]))
++            lineas.append(f"   Partición {p}: {self.por_particion[p]:>5} eventos | {comercios}")
++        lineas.append("=" * 64)
++        return "\n".join(lineas)
++
++
++def parsear_argumentos(argv: list[str] | None = None) -> argparse.Namespace:
++    parser = argparse.ArgumentParser(description="Producer RapidGo Variante 6")
++    parser.add_argument("--bootstrap", default=config.KAFKA_BOOTSTRAP_SERVERS)
++    parser.add_argument("--topic", default=config.KAFKA_TOPIC)
++    parser.add_argument("--eventos", type=int, default=50, help="Cantidad de eventos")
++    parser.add_argument("--intervalo", type=float, default=0.5, help="Segundos entre eventos")
++    parser.add_argument("--continuo", action="store_true", help="Enviar hasta Ctrl+C")
++    parser.add_argument("--seed", type=int, default=None, help="Semilla reproducible")
++    parser.add_argument("--dry-run", action="store_true", help="No envía a Kafka, solo imprime")
++    return parser.parse_args(argv)
++
++
++def main(argv: list[str] | None = None) -> int:
++    args = parsear_argumentos(argv)
++    generador = GeneradorEventos(seed=args.seed)
++    stats = Estadisticas()
++
++    print(f"[INFO] Equipo: {generador.equipo_id} | Ejecución: {generador.ejecucion_id}")
++    print(f"[INFO] Topic: {args.topic} | Bootstrap: {args.bootstrap} | Key: comercio_id")
++
++    producer = None if args.dry_run else construir_producer(args.bootstrap)
++
++    detener = False
++
++    def _ctrl_c(*_):
++        nonlocal detener
++        detener = True
++        print("\n[INFO] Deteniendo producer...")
++
++    signal.signal(signal.SIGINT, _ctrl_c)
++
++    i = 0
++    while not detener and (args.continuo or i < args.eventos):
++        i += 1
++        evento = generador.generar()
++
++        errores = errores_contrato(evento)
++        if errores:
++            stats.invalidos += 1
++            print(f"[WARN] Evento descartado (contrato): {errores}", file=sys.stderr)
++            continue
++
++        key, value = serializar(evento)
++
++        if producer is None:
++            print(value.decode("utf-8"))
++        else:
++            try:
++                producer.produce(args.topic, key=key, value=value, on_delivery=stats.callback)
++            except BufferError:
++                # Cola local llena: esperar a que se vacíe y reintentar una vez.
++                producer.poll(1)
++                producer.produce(args.topic, key=key, value=value, on_delivery=stats.callback)
++            producer.poll(0)  # dispara los callbacks pendientes
++        stats.enviados += 1
++
++        if args.intervalo > 0:
++            time.sleep(args.intervalo)
++
++    if producer is not None:
++        pendientes = producer.flush(15)
++        if pendientes:
++            print(f"[ERROR] {pendientes} mensajes sin confirmar tras flush.", file=sys.stderr)
++            stats.fallidos += pendientes
++
++    print(stats.resumen(args.topic, generador.ejecucion_id))
++    return 1 if stats.fallidos else 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/producer/topic_admin.py b/producer/topic_admin.py
+new file mode 100644
+index 0000000..3d241ac
+--- /dev/null
++++ b/producer/topic_admin.py
+@@ -0,0 +1,76 @@
++"""
++Creación y descripción del topic de Kafka.
++
++El docker-compose tiene KAFKA_AUTO_CREATE_TOPICS_ENABLE=false, así que el
++topic debe crearse explícitamente. Hay dos formas equivalentes:
++
++    1. Automática: el servicio `kafka-init` del docker-compose.
++    2. Manual:     python -m producer.topic_admin
++
++Uso:
++    python -m producer.topic_admin             # crea (si no existe) y describe
++    python -m producer.topic_admin --describir # solo describe
++"""
++
++from __future__ import annotations
++
++import argparse
++import sys
++
++from confluent_kafka import KafkaException
++from confluent_kafka.admin import AdminClient, NewTopic
++
++from producer import config
++
++
++def crear_topic(admin: AdminClient, topic: str, particiones: int, replicacion: int) -> None:
++    futuros = admin.create_topics(
++        [NewTopic(topic, num_partitions=particiones, replication_factor=replicacion)]
++    )
++    for nombre, futuro in futuros.items():
++        try:
++            futuro.result()
++            print(f"[OK] Topic '{nombre}' creado con {particiones} particiones.")
++        except KafkaException as exc:
++            if exc.args[0].name() == "TOPIC_ALREADY_EXISTS":
++                print(f"[INFO] El topic '{nombre}' ya existe.")
++            else:
++                raise
++
++
++def describir_topic(admin: AdminClient, topic: str) -> int:
++    """Imprime particiones/líder/réplicas y devuelve el número de particiones."""
++    metadata = admin.list_topics(topic=topic, timeout=10)
++    info = metadata.topics.get(topic)
++    if info is None or info.error is not None:
++        raise RuntimeError(f"No se pudo describir el topic '{topic}': {info and info.error}")
++
++    print(f"Topic: {topic} | Particiones: {len(info.partitions)}")
++    for pid in sorted(info.partitions):
++        p = info.partitions[pid]
++        print(f"  Partición {pid} | Líder: {p.leader} | Réplicas: {p.replicas} | ISR: {p.isrs}")
++    return len(info.partitions)
++
++
++def main(argv: list[str] | None = None) -> int:
++    parser = argparse.ArgumentParser(description="Administración del topic RapidGo")
++    parser.add_argument("--bootstrap", default=config.KAFKA_BOOTSTRAP_SERVERS)
++    parser.add_argument("--topic", default=config.KAFKA_TOPIC)
++    parser.add_argument("--particiones", type=int, default=config.KAFKA_PARTICIONES)
++    parser.add_argument("--replicacion", type=int, default=config.KAFKA_REPLICACION)
++    parser.add_argument("--describir", action="store_true", help="Solo describir el topic")
++    args = parser.parse_args(argv)
++
++    admin = AdminClient({"bootstrap.servers": args.bootstrap})
++    if not args.describir:
++        crear_topic(admin, args.topic, args.particiones, args.replicacion)
++    particiones = describir_topic(admin, args.topic)
++
++    if particiones < 2:
++        print("[ERROR] El proyecto exige varias particiones.", file=sys.stderr)
++        return 1
++    return 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/pytest.ini b/pytest.ini
+new file mode 100644
+index 0000000..c97dbee
+--- /dev/null
++++ b/pytest.ini
+@@ -0,0 +1,4 @@
++[pytest]
++# Permite importar los paquetes del proyecto (producer, spark, ...) desde tests/
++pythonpath = .
++testpaths = tests
+diff --git a/samples/contrato_evento_variante6.schema.json b/samples/contrato_evento_variante6.schema.json
+new file mode 100644
+index 0000000..b866d6b
+--- /dev/null
++++ b/samples/contrato_evento_variante6.schema.json
+@@ -0,0 +1,69 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://github.com/MainRDSniper09/RapidGo/samples/contrato_evento_variante6.schema.json",
++  "title": "Evento de preparación de pedidos - RapidGo Variante 6",
++  "description": "Contrato del evento publicado en el topic preparacion_pedidos. Un evento se emite cuando un comercio termina de preparar un pedido.",
++  "type": "object",
++  "additionalProperties": false,
++  "required": [
++    "evento_id",
++    "equipo_id",
++    "ejecucion_id",
++    "version_contrato",
++    "timestamp_evento",
++    "pedido_id",
++    "comercio_id",
++    "inicio_preparacion",
++    "fin_preparacion",
++    "pedidos_en_cola"
++  ],
++  "properties": {
++    "evento_id": {
++      "description": "Identificador único del evento (UUID v4). Permite detectar duplicados.",
++      "type": "string",
++      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
++    },
++    "equipo_id": {
++      "description": "Identificador del equipo que generó el evento.",
++      "type": "string",
++      "minLength": 1
++    },
++    "ejecucion_id": {
++      "description": "Identificador de la ejecución del producer que generó el evento.",
++      "type": "string",
++      "minLength": 1
++    },
++    "version_contrato": {
++      "description": "Versión del contrato del evento.",
++      "type": "string",
++      "const": "1.0"
++    },
++    "timestamp_evento": {
++      "description": "Momento (UTC, ISO-8601) en que se emitió el evento. Se usa como event-time en Spark.",
++      "type": "string",
++      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++    },
++    "pedido_id": {
++      "type": "string",
++      "pattern": "^PED-\\d+$"
++    },
++    "comercio_id": {
++      "description": "Comercio que prepara el pedido. Es la KEY del mensaje en Kafka (ADR-001).",
++      "type": "string",
++      "pattern": "^COM-\\d{3}$"
++    },
++    "inicio_preparacion": {
++      "type": "string",
++      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++    },
++    "fin_preparacion": {
++      "type": "string",
++      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++    },
++    "pedidos_en_cola": {
++      "description": "Pedidos pendientes en el comercio en el momento del evento (backlog).",
++      "type": "integer",
++      "minimum": 0
++    }
++  }
++}
+diff --git a/samples/evento_variante6.json b/samples/evento_variante6.json
+index fbbf6c7..30d24cc 100644
+--- a/samples/evento_variante6.json
++++ b/samples/evento_variante6.json
+@@ -1,7 +1,12 @@
+ {
++  "evento_id": "8f14e45f-ceea-4a7b-9c3d-2b1e6a0d7c55",
++  "equipo_id": "rapidgo-v6",
++  "ejecucion_id": "run-20261021-190000",
++  "version_contrato": "1.0",
++  "timestamp_evento": "2026-10-21T19:25:00Z",
+   "pedido_id": "PED-1029",
+   "comercio_id": "COM-084",
+   "inicio_preparacion": "2026-10-21T19:00:00Z",
+   "fin_preparacion": "2026-10-21T19:25:00Z",
+   "pedidos_en_cola": 5
+-}
+\ No newline at end of file
++}
+diff --git a/tests/__init__.py b/tests/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/tests/test_producer.py b/tests/test_producer.py
+new file mode 100644
+index 0000000..fc26628
+--- /dev/null
++++ b/tests/test_producer.py
+@@ -0,0 +1,165 @@
++"""
++Pruebas del Producer (Issue #9).
++
++No necesitan Kafka: prueban el contrato, la generación de eventos,
++la serialización key/value y el conteo de entregas por partición.
++"""
++
++import json
++from datetime import datetime, timezone
++from pathlib import Path
++
++import pytest
++
++from producer import config
++from producer.generador import (
++    COMERCIOS,
++    GeneradorEventos,
++    errores_contrato,
++    es_valido,
++    parsear_fecha,
++)
++from producer.kafka_producer import Estadisticas, parsear_argumentos, serializar
++
++RAIZ = Path(__file__).resolve().parent.parent
++AHORA = datetime(2026, 10, 21, 19, 25, tzinfo=timezone.utc)
++
++
++@pytest.fixture
++def generador():
++    return GeneradorEventos(equipo_id="rapidgo-v6", ejecucion_id="run-test", seed=42)
++
++
++# ----------------------------------------------------------------- contrato
++def test_ejemplo_de_samples_cumple_el_contrato():
++    evento = json.loads((RAIZ / "samples" / "evento_variante6.json").read_text(encoding="utf-8"))
++    assert errores_contrato(evento) == []
++
++
++def test_eventos_generados_cumplen_el_contrato(generador):
++    for _ in range(500):
++        evento = generador.generar()
++        assert errores_contrato(evento) == [], evento
++
++
++@pytest.mark.parametrize(
++    "campo, valor",
++    [
++        ("pedidos_en_cola", -1),
++        ("pedidos_en_cola", "5"),
++        ("comercio_id", "LOCAL-1"),
++        ("fin_preparacion", "21/10/2026 19:25"),
++        ("version_contrato", "9.9"),
++    ],
++)
++def test_contrato_rechaza_valores_invalidos(generador, campo, valor):
++    evento = generador.generar(AHORA)
++    evento[campo] = valor
++    assert not es_valido(evento)
++
++
++def test_contrato_rechaza_campos_faltantes_o_extra(generador):
++    evento = generador.generar(AHORA)
++    del evento["comercio_id"]
++    assert not es_valido(evento)
++
++    evento = generador.generar(AHORA)
++    evento["campo_no_definido"] = 1
++    assert not es_valido(evento)
++
++
++def test_contrato_rechaza_fin_antes_de_inicio(generador):
++    evento = generador.generar(AHORA)
++    evento["inicio_preparacion"], evento["fin_preparacion"] = (
++        evento["fin_preparacion"],
++        evento["inicio_preparacion"],
++    )
++    assert "fin_preparacion es anterior a inicio_preparacion" in errores_contrato(evento)
++
++
++# ---------------------------------------------------------------- generador
++def test_eventos_identifican_equipo_y_ejecucion(generador):
++    evento = generador.generar(AHORA)
++    assert evento["equipo_id"] == "rapidgo-v6"
++    assert evento["ejecucion_id"] == "run-test"
++
++
++def test_evento_id_y_pedido_id_son_unicos(generador):
++    eventos = [generador.generar(AHORA) for _ in range(300)]
++    assert len({e["evento_id"] for e in eventos}) == 300
++    assert len({e["pedido_id"] for e in eventos}) == 300
++
++
++def test_fin_preparacion_es_el_timestamp_del_evento(generador):
++    evento = generador.generar(AHORA)
++    assert evento["fin_preparacion"] == evento["timestamp_evento"] == "2026-10-21T19:25:00Z"
++    assert parsear_fecha(evento["inicio_preparacion"]) < AHORA
++
++
++def test_misma_semilla_genera_mismos_datos():
++    a = GeneradorEventos(ejecucion_id="x", seed=7).generar(AHORA)
++    b = GeneradorEventos(ejecucion_id="x", seed=7).generar(AHORA)
++    assert a == b
++
++
++def test_comercios_criticos_preparan_mas_lento(generador):
++    """Los comercios críticos deben existir para que Spark pueda disparar alertas."""
++    criticos = {c.comercio_id for c in COMERCIOS if c.critico}
++    assert criticos, "Debe existir al menos un comercio crítico"
++
++    duraciones = {"critico": [], "normal": []}
++    for _ in range(1000):
++        e = generador.generar(AHORA)
++        minutos = (parsear_fecha(e["fin_preparacion"]) - parsear_fecha(e["inicio_preparacion"])).seconds / 60
++        duraciones["critico" if e["comercio_id"] in criticos else "normal"].append(minutos)
++
++    promedio = {k: sum(v) / len(v) for k, v in duraciones.items()}
++    assert promedio["critico"] > promedio["normal"] + 10
++
++
++# ------------------------------------------------------------ serialización
++def test_key_del_mensaje_es_comercio_id(generador):
++    """ADR-001: la key de Kafka es comercio_id."""
++    evento = generador.generar(AHORA)
++    key, value = serializar(evento)
++    assert key == evento["comercio_id"].encode("utf-8")
++    assert json.loads(value) == evento
++
++
++def test_configuracion_por_defecto_coincide_con_adr_001():
++    args = parsear_argumentos([])
++    assert args.topic == "preparacion_pedidos"
++    assert config.KAFKA_PARTICIONES >= 2
++
++
++# ------------------------------------------------------- callback de entrega
++class MensajeFalso:
++    """Imita el objeto Message que confluent_kafka pasa al callback."""
++
++    def __init__(self, particion, offset, key):
++        self._p, self._o, self._k = particion, offset, key
++
++    def partition(self):
++        return self._p
++
++    def offset(self):
++        return self._o
++
++    def key(self):
++        return self._k.encode()
++
++    def topic(self):
++        return "preparacion_pedidos"
++
++
++def test_estadisticas_cuentan_por_particion():
++    stats = Estadisticas()
++    stats.callback(None, MensajeFalso(0, 10, "COM-001"))
++    stats.callback(None, MensajeFalso(0, 11, "COM-001"))
++    stats.callback(None, MensajeFalso(2, 5, "COM-011"))
++    stats.callback("timeout", None)
++
++    assert stats.confirmados == 3
++    assert stats.fallidos == 1
++    assert stats.por_particion == {0: 2, 2: 1}
++    assert stats.comercios_por_particion[0] == {"COM-001"}
+-- 
+2.43.0
+

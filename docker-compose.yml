@@ -60,6 +60,36 @@ services:
 
 
   # ==========================================================
+  # KAFKA INIT - Crea el topic definido en ADR-001
+  # (auto-create está desactivado, por eso se crea explícitamente)
+  # Se ejecuta una vez y termina.
+  # ==========================================================
+  kafka-init:
+    image: apache/kafka:4.3.1
+    container_name: rapidgo-kafka-init
+
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:19092 \
+          --create --if-not-exists \
+          --topic preparacion_pedidos \
+          --partitions 3 \
+          --replication-factor 1
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:19092 \
+          --describe --topic preparacion_pedidos
+
+    networks:
+      - rapidgo-net
+
+    restart: "no"
+
+
+  # ==========================================================
   # SPARK MASTER
   # ==========================================================
   spark-master:
@@ -68,8 +98,8 @@ services:
     hostname: spark-master
 
     depends_on:
-      kafka:
-        condition: service_healthy
+      kafka-init:
+        condition: service_completed_successfully
 
     command:
       - /opt/spark/bin/spark-class

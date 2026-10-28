@@ -1,4 +1,9 @@
 {
+  "evento_id": "8f14e45f-ceea-4a7b-9c3d-2b1e6a0d7c55",
+  "equipo_id": "rapidgo-v6",
+  "ejecucion_id": "run-20261021-190000",
+  "version_contrato": "1.0",
+  "timestamp_evento": "2026-10-21T19:25:00Z",
   "pedido_id": "PED-1029",
   "comercio_id": "COM-084",
   "inicio_preparacion": "2026-10-21T19:00:00Z",
