@@ -77,9 +77,20 @@ python -m producer --eventos 100 --intervalo 0.2
 pytest -v
 ```
 
+### Orquestación con Airflow (Semana 3)
+
+```powershell
+docker compose up -d --build airflow                       # Airflow + Postgres
+docker exec rapidgo-airflow airflow dags trigger rapidgo_pipeline
+```
+
+UI: <http://localhost:8085> (usuario `admin` / contraseña `admin`).
+
 | Componente | Documentación |
 |------------|---------------|
 | Producer / Kafka | [`producer/README.md`](producer/README.md) |
 | Contrato del evento | [`samples/contrato_evento_variante6.schema.json`](samples/contrato_evento_variante6.schema.json) |
 | Decisión topic / key / particiones | [`docs/decisions/ADR-001-kafka.md`](docs/decisions/ADR-001-kafka.md) |
+| Airflow / DAG `rapidgo_pipeline` | [`airflow/README.md`](airflow/README.md) |
+| Decisión de orquestación | [`docs/decisions/ADR-003-airflow.md`](docs/decisions/ADR-003-airflow.md) |
 

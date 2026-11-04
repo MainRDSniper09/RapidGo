@@ -1,0 +1,102 @@
+task_id=consolidar_kpis key=ruta_kpis
+  curated/kpis_comercio/kpis-manual__2026-11-04T23_19_02_611215_00_00.parquet
+
+task_id=consolidar_kpis key=comercios
+  12
+
+task_id=consolidar_kpis key=total_pedidos
+  200
+
+task_id=consolidar_kpis key=demora_promedio_global_min
+  21.31
+
+task_id=consolidar_kpis key=total_alertas
+  132
+
+task_id=consolidar_kpis key=porcentaje_alertas_global
+  66.0
+
+task_id=consolidar_kpis key=comercios_criticos
+  ['COM-011', 'COM-012']
+
+task_id=consolidar_kpis key=return_value
+  {'comercios': 12, 'ruta_kpis': 'curated/kpis_comercio/kpis-manual__2026-11-04T23_19_02_611215_00_00.parquet', 'total_alertas': 132, 'total_pedidos': 200, 'comercios_criticos': ['COM-011', 'COM-012'], 'porcentaje_alertas_global': 66.0, 'demora_promedio_global_min': 21.31}
+
+task_id=control_calidad key=duplicados_eliminados
+  0
+
+task_id=control_calidad key=registros_entrada
+  200
+
+task_id=control_calidad key=registros_limpios
+  200
+
+task_id=control_calidad key=porcentaje_duplicados
+  0.0
+
+task_id=control_calidad key=nulos
+  0
+
+task_id=control_calidad key=demoras_fuera_rango
+  0
+
+task_id=control_calidad key=checks
+  {'sin_nulos': True, 'duplicados_ok': True, 'hay_registros': True, 'demoras_en_rango': True, 'porcentaje_validos_ok': True}
+
+task_id=control_calidad key=aprobado
+  True
+
+task_id=control_calidad key=ruta_limpio
+  processed/preparacion_pedidos/limpio-manual__2026-11-04T23_19_02_611215_00_00.parquet
+
+task_id=control_calidad key=return_value
+  {'nulos': 0, 'checks': {'sin_nulos': True, 'duplicados_ok': True, 'hay_registros': True, 'demoras_en_rango': True, 'porcentaje_validos_ok': True}, 'aprobado': True, 'ruta_limpio': 'processed/preparacion_pedidos/limpio-manual__2026-11-04T23_19_02_611215_00_00.parquet', 'registros_entrada': 200, 'registros_limpios': 200, 'demoras_fuera_rango': 0, 'duplicados_eliminados': 0, 'porcentaje_duplicados': 0.0}
+
+task_id=generar_reporte key=ruta_reporte_md
+  curated/reportes/reporte-manual__2026-11-04T23_19_02_611215_00_00.md
+
+task_id=generar_reporte key=ruta_reporte_json
+  curated/reportes/reporte-manual__2026-11-04T23_19_02_611215_00_00.json
+
+task_id=generar_reporte key=comercios_criticos
+  ['COM-011', 'COM-012']
+
+task_id=generar_reporte key=return_value
+  {'ruta_reporte_md': 'curated/reportes/reporte-manual__2026-11-04T23_19_02_611215_00_00.md', 'ruta_reporte_json': 'curated/reportes/reporte-manual__2026-11-04T23_19_02_611215_00_00.json', 'comercios_criticos': ['COM-011', 'COM-012']}
+
+task_id=validar_datos key=total_leidos
+  200
+
+task_id=validar_datos key=validos
+  200
+
+task_id=validar_datos key=invalidos
+  0
+
+task_id=validar_datos key=porcentaje_validos
+  100.0
+
+task_id=validar_datos key=ruta_validos
+  processed/validados/validados-manual__2026-11-04T23_19_02_611215_00_00.parquet
+
+task_id=validar_datos key=ruta_cuarentena
+  None
+
+task_id=validar_datos key=return_value
+  {'validos': 200, 'invalidos': 0, 'ruta_validos': 'processed/validados/validados-manual__2026-11-04T23_19_02_611215_00_00.parquet', 'total_leidos': 200, 'ruta_cuarentena': None, 'porcentaje_validos': 100.0}
+
+task_id=verificar_raw key=archivos
+  ['raw/preparacion_pedidos/muestra-airflow-20261104-231629.parquet']
+
+task_id=verificar_raw key=total_archivos
+  1
+
+task_id=verificar_raw key=total_registros
+  200
+
+task_id=verificar_raw key=muestra_generada
+  None
+
+task_id=verificar_raw key=return_value
+  {'archivos': ['raw/preparacion_pedidos/muestra-airflow-20261104-231629.parquet'], 'total_archivos': 1, 'total_registros': 200, 'muestra_generada': None}
+

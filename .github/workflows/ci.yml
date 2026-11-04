@@ -24,7 +24,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Validar sintaxis Python
-        run: python -m compileall producer spark tests
+        run: python -m compileall producer spark tests airflow/dags
 
       - name: Ejecutar pruebas
         run: pytest -v

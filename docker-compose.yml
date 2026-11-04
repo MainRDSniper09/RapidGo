@@ -192,6 +192,83 @@ services:
       - rapidgo-net
 
 
+  # ==========================================================
+  # POSTGRES - Base de metadatos de Airflow (Issue #12)
+  # ==========================================================
+  airflow-postgres:
+    image: postgres:16
+    container_name: rapidgo-airflow-postgres
+
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+
+    volumes:
+      - airflow-postgres-data:/var/lib/postgresql/data
+
+    networks:
+      - rapidgo-net
+
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+
+  # ==========================================================
+  # APACHE AIRFLOW - Orquestación batch (Issue #12)
+  # "standalone" levanta en un solo contenedor: api-server (UI),
+  # scheduler, dag-processor y triggerer. UI en http://localhost:8085
+  # ==========================================================
+  airflow:
+    build: ./airflow
+    image: rapidgo-airflow:3.3.2
+    container_name: rapidgo-airflow
+    hostname: airflow
+
+    depends_on:
+      airflow-postgres:
+        condition: service_healthy
+
+    command: standalone
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DEFAULT_TIMEZONE: America/Bogota
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: admin:admin
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE: /opt/airflow/simple_auth_manager_passwords.json
+      AIRFLOW__DAG_PROCESSOR__REFRESH_INTERVAL: "30"
+      # Código del proyecto (producer/) disponible para las tasks
+      PYTHONPATH: /opt/airflow/project
+      RAPIDGO_DATALAKE: /opt/airflow/datalake
+
+    ports:
+      - "8085:8080"
+
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./airflow/simple_auth_manager_passwords.json:/opt/airflow/simple_auth_manager_passwords.json
+      - ./producer:/opt/airflow/project/producer
+      - ./samples:/opt/airflow/project/samples
+      - ./datalake:/opt/airflow/datalake
+
+    networks:
+      - rapidgo-net
+
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/api/v2/version || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+
 # ============================================================
 # RED INTERNA
 # ============================================================
@@ -205,3 +282,4 @@ networks:
 # ============================================================
 volumes:
   kafka-data:
+  airflow-postgres-data:

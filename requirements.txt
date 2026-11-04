@@ -9,6 +9,10 @@ confluent-kafka==2.16.0
 # Spark
 pyspark==4.2.0
 
+# Data Lake (Parquet) - usado por las tasks de Airflow (Issue #12)
+pandas>=2.2,<3
+pyarrow>=17
+
 # Validación de contratos JSON
 jsonschema>=4.23,<5
 
