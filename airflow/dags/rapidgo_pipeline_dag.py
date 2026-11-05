@@ -1,5 +1,5 @@
 """
-DAG de orquestación del pipeline RapidGo - Variante 6 (Issue #12).
+DAG de orquestación del pipeline RapidGo - Variante 6 (Issue #13).
 
 Coordina las tareas batch y de control posteriores al procesamiento
 streaming (Kafka -> Spark -> Data Lake/raw):
