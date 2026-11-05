@@ -242,3 +242,7 @@ datalake/**
 # Checkpoints de Spark Structured Streaming
 checkpoints/
 **/_spark_metadata/
+
+# Airflow (Issue #12): logs de ejecución generados localmente
+airflow/logs/*
+!airflow/logs/.gitkeep

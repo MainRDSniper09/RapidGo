@@ -1,0 +1,8 @@
+DAG: rapidgo_pipeline | schedule=@daily | tasks=6
+
+verificar_raw      -> ['generar_reporte', 'validar_datos']  retries=2 retry_delay=0:01:00
+validar_datos      -> ['control_calidad', 'generar_reporte']  retries=2 retry_delay=0:01:00
+control_calidad    -> ['consolidar_kpis', 'generar_reporte']  retries=2 retry_delay=0:01:00
+consolidar_kpis    -> ['generar_reporte']  retries=2 retry_delay=0:01:00
+generar_reporte    -> ['notificar_alertas']  retries=2 retry_delay=0:01:00
+notificar_alertas  -> (fin)  retries=2 retry_delay=0:01:00
