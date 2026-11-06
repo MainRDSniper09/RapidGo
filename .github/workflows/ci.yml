@@ -23,8 +23,8 @@ jobs:
       - name: Instalar dependencias
         run: pip install -r requirements.txt
 
-      - name: Validar sintaxis Python
-        run: python -m compileall producer spark tests airflow/dags
+      - name: Validar sintaxis Python y Airflow
+        run: python -m compileall producer spark tests airflow
 
       - name: Ejecutar pruebas
         run: pytest -v
