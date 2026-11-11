@@ -1,0 +1,43 @@
+$ pytest -v  (host, Python 3.14 - sin Java: las pruebas de Spark se omiten aquí)
+============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-8.4.2, pluggy-1.7.0 -- C:\Users\barre\AppData\Local\Temp\rgvenv\Scripts\python.exe
+rootdir: C:\Users\barre\Documents\8 semestre\Big data\RapidGo\RapidGo
+configfile: pytest.ini
+testpaths: tests
+collecting ... collected 26 items / 1 skipped
+
+tests/test_airflow_tareas.py::test_verificar_raw_sin_datos_y_sin_muestra_falla PASSED [  3%]
+tests/test_airflow_tareas.py::test_verificar_raw_genera_muestra_si_esta_vacia PASSED [  7%]
+tests/test_airflow_tareas.py::test_pipeline_completo_produce_kpis_y_reporte PASSED [ 11%]
+tests/test_airflow_tareas.py::test_validacion_envia_invalidos_a_cuarentena PASSED [ 15%]
+tests/test_airflow_tareas.py::test_calidad_falla_si_hay_demasiados_invalidos PASSED [ 19%]
+tests/test_airflow_tareas.py::test_calidad_elimina_duplicados_y_marca_alertas PASSED [ 23%]
+tests/test_airflow_tareas.py::test_lee_raw_con_fechas_tipo_timestamp PASSED [ 26%]
+tests/test_business_rules.py::test_sample_event_contract SKIPPED (El...) [ 30%]
+tests/test_business_rules.py::test_preparation_alert_threshold PASSED    [ 34%]
+tests/test_producer.py::test_ejemplo_de_samples_cumple_el_contrato PASSED [ 38%]
+tests/test_producer.py::test_eventos_generados_cumplen_el_contrato PASSED [ 42%]
+tests/test_producer.py::test_contrato_rechaza_valores_invalidos[pedidos_en_cola--1] PASSED [ 46%]
+tests/test_producer.py::test_contrato_rechaza_valores_invalidos[pedidos_en_cola-5] PASSED [ 50%]
+tests/test_producer.py::test_contrato_rechaza_valores_invalidos[comercio_id-LOCAL-1] PASSED [ 53%]
+tests/test_producer.py::test_contrato_rechaza_valores_invalidos[fin_preparacion-21/10/2026 19:25] PASSED [ 57%]
+tests/test_producer.py::test_contrato_rechaza_valores_invalidos[version_contrato-9.9] PASSED [ 61%]
+tests/test_producer.py::test_contrato_rechaza_campos_faltantes_o_extra PASSED [ 65%]
+tests/test_producer.py::test_contrato_rechaza_fin_antes_de_inicio PASSED [ 69%]
+tests/test_producer.py::test_eventos_identifican_equipo_y_ejecucion PASSED [ 73%]
+tests/test_producer.py::test_evento_id_y_pedido_id_son_unicos PASSED     [ 76%]
+tests/test_producer.py::test_fin_preparacion_es_el_timestamp_del_evento PASSED [ 80%]
+tests/test_producer.py::test_misma_semilla_genera_mismos_datos PASSED    [ 84%]
+tests/test_producer.py::test_comercios_criticos_preparan_mas_lento PASSED [ 88%]
+tests/test_producer.py::test_key_del_mensaje_es_comercio_id PASSED       [ 92%]
+tests/test_producer.py::test_configuracion_por_defecto_coincide_con_adr_001 PASSED [ 96%]
+tests/test_producer.py::test_estadisticas_cuentan_por_particion PASSED   [100%]
+
+======================== 25 passed, 2 skipped in 3.36s ========================
+
+$ pytest -v tests/test_spark_streaming.py  (dentro de rapidgo-spark-master: Spark 4.2.0 + Java)
+tests/test_spark_streaming.py::test_separa_validos_e_invalidos PASSED    [ 25%]
+tests/test_spark_streaming.py::test_transformaciones_y_reglas_de_alerta PASSED [ 50%]
+tests/test_spark_streaming.py::test_deduplica_por_evento_id PASSED       [ 75%]
+tests/test_spark_streaming.py::test_agregacion_por_ventana PASSED        [100%]
+============================== 4 passed in 45.52s ==============================

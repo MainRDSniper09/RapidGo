@@ -1,0 +1,7 @@
+Topic: preparacion_pedidos	TopicId: qNVHIcjDSnCUkjo7frbScg	PartitionCount: 3	ReplicationFactor: 1	Configs: min.insync.replicas=1
+	Topic: preparacion_pedidos	Partition: 0	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+	Topic: preparacion_pedidos	Partition: 1	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+	Topic: preparacion_pedidos	Partition: 2	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+preparacion_pedidos:0:85
+preparacion_pedidos:1:164
+preparacion_pedidos:2:151

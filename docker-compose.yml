@@ -234,6 +234,13 @@ services:
 
     command: standalone
 
+    # Mismo UID que los contenedores de Spark (185). El Data Lake es un bind
+    # mount compartido: Spark crea raw/, processed/ y checkpoints/ con permisos
+    # 755, y con el UID por defecto de Airflow (50000) las tasks fallaban con
+    # PermissionError al escribir en processed/ (Issue #15). La imagen de
+    # Airflow admite cualquier UID siempre que el grupo sea 0.
+    user: "185:0"
+
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow

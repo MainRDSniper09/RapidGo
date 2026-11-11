@@ -1,0 +1,26 @@
+# Ejecución 1 (300 eventos) - spark-submit --modo disponible sobre spark://spark-master:7077
+26/11/11 22:33:30 INFO SparkContext: Submitted application: RapidGo_Variante6_StructuredStreaming
+26/11/11 22:33:34 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261111223334-0001/0 on worker-20261111221535-172.18.0.7-34579 (172.18.0.7:34579) with 1 core(s)
+26/11/11 22:33:34 INFO StandaloneSchedulerBackend: Granted executor ID app-20261111223334-0001/0 on hostPort 172.18.0.7:34579 with 1 core(s), 512.0 MiB RAM
+26/11/11 22:33:34 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261111223334-0001/1 on worker-20261111221535-172.18.0.6-39349 (172.18.0.6:39349) with 1 core(s)
+26/11/11 22:33:34 INFO StandaloneSchedulerBackend: Granted executor ID app-20261111223334-0001/1 on hostPort 172.18.0.6:39349 with 1 core(s), 512.0 MiB RAM
+[RapidGo] 4 consultas activas (modo=disponible), leyendo preparacion_pedidos de kafka:19092
+[RapidGo] consulta=raw_eventos terminada; filas último batch=0
+[RapidGo] consulta=alertas terminada; filas último batch=0
+[RapidGo] consulta=cuarentena terminada; filas último batch=300
+[RapidGo] consulta=ventanas_comercio terminada; filas último batch=0
+  (nota: esta ejecución usaba el mensaje anterior 'filas último batch', que mostraba solo el último micro-batch)
+
+# Ejecución 2 (+50 eventos) - reanuda desde los checkpoints
+26/11/11 22:38:13 INFO SparkContext: Submitted application: RapidGo_Variante6_StructuredStreaming
+26/11/11 22:38:17 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261111223817-0002/0 on worker-20261111221535-172.18.0.7-34579 (172.18.0.7:34579) with 1 core(s)
+26/11/11 22:38:17 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20261111223817-0002/1 on worker-20261111221535-172.18.0.6-39349 (172.18.0.6:39349) with 1 core(s)
+[RapidGo] 4 consultas activas (modo=disponible), leyendo preparacion_pedidos de kafka:19092
+[RapidGo] consulta=raw_eventos terminada; batches=2 mensajes_leidos_kafka=50
+[RapidGo] consulta=alertas terminada; batches=2 mensajes_leidos_kafka=50
+[RapidGo] consulta=cuarentena terminada; batches=1 mensajes_leidos_kafka=50
+[RapidGo] consulta=ventanas_comercio terminada; batches=2 mensajes_leidos_kafka=50
+
+# Fallo detectado antes del ajuste de memoria (executor de 1g > worker de 768m)
+26/11/11 22:24:13 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+26/11/11 22:24:28 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources

@@ -146,7 +146,7 @@ def generar_muestra_raw(datalake: Path, cantidad: int = 200, seed: int | None = 
     return archivo
 
 
-def verificar_raw(datalake: Path, generar_muestra: bool = True, cantidad_muestra: int = 200) -> dict:
+def verificar_raw(datalake: Path, generar_muestra: bool = False, cantidad_muestra: int = 200) -> dict:
     datalake = Path(datalake)
     archivos = listar_parquet_raw(datalake)
     muestra = None

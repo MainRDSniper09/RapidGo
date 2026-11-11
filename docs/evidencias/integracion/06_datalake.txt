@@ -1,0 +1,79 @@
+# Archivos Parquet escritos por Spark
+raw/preparacion_pedidos             archivos= 4  filas=300
+processed/alertas_streaming         archivos= 4  filas=204
+processed/ventanas_comercio         archivos= 4  filas=12
+processed/cuarentena_streaming      archivos= 1  filas=0
+
+# Checkpoints (offsets por consulta)
+alertas              offsets=['.0.crc', '.1.crc', '0', '1']  commits=['.0.crc', '.1.crc', '0', '1']  state=si
+cuarentena           offsets=['.0.crc', '0']  commits=['.0.crc', '0']  state=no
+raw_eventos          offsets=['.0.crc', '.1.crc', '0', '1']  commits=['.0.crc', '.1.crc', '0', '1']  state=si
+ventanas_comercio    offsets=['.0.crc', '.1.crc', '0', '1']  commits=['.0.crc', '.1.crc', '0', '1']  state=si
+
+# Esquema raw/preparacion_pedidos (transformaciones aplicadas)
+evento_id                        str
+equipo_id                        str
+ejecucion_id                     str
+version_contrato                 str
+timestamp_evento                 str
+pedido_id                        str
+comercio_id                      str
+inicio_preparacion               str
+fin_preparacion                  str
+pedidos_en_cola                int32
+kafka_particion                int32
+kafka_offset                   int64
+kafka_timestamp       datetime64[ns]
+event_time            datetime64[ns]
+inicio_ts             datetime64[ns]
+fin_ts                datetime64[ns]
+demora_min                   float64
+alerta_tiempo                   bool
+alerta_cola                     bool
+alerta_saturacion               bool
+tipo_alerta                      str
+procesado_en          datetime64[ns]
+
+# Muestra
+pedido_id comercio_id  demora_min  pedidos_en_cola  alerta_tiempo  alerta_cola     tipo_alerta  kafka_particion
+ PED-3854     COM-002        10.9                7          False        False         NINGUNA                1
+ PED-3862     COM-002         4.9                6          False        False         NINGUNA                1
+ PED-3890     COM-012        29.2               13           True         True   TIEMPO_Y_COLA                1
+ PED-3896     COM-012        33.3               14           True         True   TIEMPO_Y_COLA                1
+ PED-3930     COM-012        31.2               13           True         True   TIEMPO_Y_COLA                1
+ PED-3933     COM-012        35.5               16           True         True   TIEMPO_Y_COLA                1
+ PED-3953     COM-009        15.5                6           True        False TIEMPO_EXCEDIDO                1
+ PED-3971     COM-002        14.6                6          False        False         NINGUNA                1
+
+# DistribuciÃ³n de alertas
+tipo_alerta
+TIEMPO_EXCEDIDO    128
+NINGUNA             96
+TIEMPO_Y_COLA       75
+BACKLOG              1
+
+duplicados evento_id=0  eventos=300  particiones=[np.int32(0), np.int32(1), np.int32(2)]
+
+alertas_streaming: 204 (= raw con alerta_saturacion: 204)
+reglas de alerta coherentes (demora>15, cola>=10): True
+
+# Ventanas de 5 min por comercio (valor vigente = mayor batch_id)
+     ventana_inicio         ventana_fin comercio_id  pedidos  demora_promedio_min  demora_maxima_min  cola_maxima  alertas  ventana_saturada  batch_id
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-001       13                17.07               24.7            6        9              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-002       14                13.14               19.3            7        3             False         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-003       26                15.24               22.9            7       14              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-004       22                15.06               21.8            7       11              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-005       23                15.38               22.4            7       12              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-006       21                16.01               25.1            7       13              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-007       27                15.48               22.5            7       14              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-008       15                15.01               21.8            7        7              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-009       17                15.04               21.9            7       11              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-010       15                13.76               19.7            7        3             False         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-011       47                32.35               46.4           13       47              True         0
+2026-11-11 22:20:00 2026-11-11 22:25:00     COM-012       60                29.24               47.0           16       60              True         0
+
+# Tras la ejecución 2 (checkpoints): solo se procesaron los 50 eventos nuevos
+raw total=350 duplicados evento_id=0
+ejecucion_id
+run-20261111-222220-6fb5    300
+run-20261111-223802-9725     50

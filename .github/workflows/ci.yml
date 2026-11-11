@@ -20,6 +20,13 @@ jobs:
           python-version: '3.13'
           cache: 'pip'
 
+      # Java 17 para las pruebas de las transformaciones de Spark (tests/test_spark_streaming.py)
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
       - name: Instalar dependencias
         run: pip install -r requirements.txt
 
