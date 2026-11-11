@@ -1,0 +1,6 @@
+$ kafka-console-consumer --from-beginning --max-messages 3 (key | partición | valor)
+Option --property is deprecated and will be removed in a future version. Use --formatter-property instead.
+Partition:2	COM-007	{"evento_id": "e5636728-51a6-4f1b-aebc-f5b59bfcfb54", "equipo_id": "rapidgo-v6", "ejecucion_id": "run-20261111-222220-6fb5", "version_contrato": "1.0", "timestamp_evento": "2026-11-11T22:22:28Z", "pedido_id": "PED-4148", "comercio_id": "COM-007", "inicio_preparacion": "2026-11-11T22:03:16Z", "fin_preparacion": "2026-11-11T22:22:28Z", "pedidos_en_cola": 5}
+Partition:2	COM-006	{"evento_id": "3db0d185-fad0-4889-b830-89de1df7fa2d", "equipo_id": "rapidgo-v6", "ejecucion_id": "run-20261111-222220-6fb5", "version_contrato": "1.0", "timestamp_evento": "2026-11-11T22:22:28Z", "pedido_id": "PED-4150", "comercio_id": "COM-006", "inicio_preparacion": "2026-11-11T22:01:04Z", "fin_preparacion": "2026-11-11T22:22:28Z", "pedidos_en_cola": 4}
+Partition:2	COM-006	{"evento_id": "628c5dfa-f3e6-4f47-a935-2121bee82d3c", "equipo_id": "rapidgo-v6", "ejecucion_id": "run-20261111-222220-6fb5", "version_contrato": "1.0", "timestamp_evento": "2026-11-11T22:22:28Z", "pedido_id": "PED-4151", "comercio_id": "COM-006", "inicio_preparacion": "2026-11-11T22:02:46Z", "fin_preparacion": "2026-11-11T22:22:28Z", "pedidos_en_cola": 2}
+Processed a total of 3 messages

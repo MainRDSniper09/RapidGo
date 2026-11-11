@@ -1,0 +1,81 @@
+$ .\scripts\pipeline_e2e.ps1 -SinBuild -Eventos 50
+
+==> 1/6 Levantando infraestructura (Kafka, Spark, Airflow)
+==> Esperando a que Airflow esté healthy
+NAME                       IMAGE                   COMMAND                  SERVICE            CREATED          STATUS                       PORTS
+rapidgo-airflow            rapidgo-airflow:3.3.2   "/usr/bin/dumb-init …"   airflow            26 minutes ago   Up 26 minutes (healthy)      0.0.0.0:8085->8080/tcp, [::]:8085->8080/tcp
+rapidgo-airflow-postgres   postgres:16             "docker-entrypoint.s…"   airflow-postgres   7 days ago       Up About an hour (healthy)   5432/tcp
+rapidgo-kafka              apache/kafka:4.3.1      "/__cacert_entrypoin…"   kafka              2 weeks ago      Up About an hour (healthy)   0.0.0.0:9092->9092/tcp, [::]:9092->9092/tcp
+rapidgo-spark-master       spark:4.2.0-python3     "/opt/entrypoint.sh …"   spark-master       2 weeks ago      Up 59 minutes                0.0.0.0:7077->7077/tcp, [::]:7077->7077/tcp, 0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+rapidgo-spark-worker-1     spark:4.2.0-python3     "/opt/entrypoint.sh …"   spark-worker-1     2 weeks ago      Up 59 minutes                0.0.0.0:8081->8081/tcp, [::]:8081->8081/tcp
+rapidgo-spark-worker-2     spark:4.2.0-python3     "/opt/entrypoint.sh …"   spark-worker-2     2 weeks ago      Up 59 minutes                0.0.0.0:8082->8081/tcp, [::]:8082->8081/tcp
+==> 2/6 Verificando topic preparacion_pedidos
+Topic: preparacion_pedidos	TopicId: qNVHIcjDSnCUkjo7frbScg	PartitionCount: 3	ReplicationFactor: 1	Configs: min.insync.replicas=1
+	Topic: preparacion_pedidos	Partition: 0	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+	Topic: preparacion_pedidos	Partition: 1	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+	Topic: preparacion_pedidos	Partition: 2	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+==> 3/6 Publicando 50 eventos con el producer
+[INFO] Equipo: rapidgo-v6 | Ejecución: run-20261111-231450-88fa
+[INFO] Topic: preparacion_pedidos | Bootstrap: localhost:9092 | Key: comercio_id
+================================================================
+ RESUMEN EJECUCIÓN run-20261111-231450-88fa
+================================================================
+ Topic:        preparacion_pedidos
+ Enviados:     50
+ Confirmados:  50
+ Fallidos:     0
+ Inválidos:    0 (descartados por contrato)
+ Distribución por partición:
+   Partición 0:    10 eventos | COM-003, COM-004, COM-005
+   Partición 1:    21 eventos | COM-001, COM-002, COM-009, COM-012
+   Partición 2:    19 eventos | COM-006, COM-007, COM-010, COM-011
+================================================================
+preparacion_pedidos:0:124
+preparacion_pedidos:1:256
+preparacion_pedidos:2:220
+==> 4/6 Spark Structured Streaming (procesa lo disponible en Kafka y termina)
+[RapidGo] 4 consultas activas (modo=disponible), leyendo preparacion_pedidos de kafka:19092
+[RapidGo] consulta=raw_eventos terminada; batches=2 mensajes_leidos_kafka=50
+[RapidGo] consulta=alertas terminada; batches=2 mensajes_leidos_kafka=50
+[RapidGo] consulta=cuarentena terminada; batches=1 mensajes_leidos_kafka=50
+[RapidGo] consulta=ventanas_comercio terminada; batches=2 mensajes_leidos_kafka=50
+==> 5/6 Ejecutando DAG rapidgo_pipeline
+dag_id           | logical_date | task_id           | state   | start_date                       | end_date                        
+=================+==============+===================+=========+==================================+=================================
+rapidgo_pipeline |              | notificar_alertas | success | 2026-11-11T23:17:01.418806+00:00 | 2026-11-11T23:17:02.972268+00:00
+rapidgo_pipeline |              | verificar_raw     | success | 2026-11-11T23:16:47.486330+00:00 | 2026-11-11T23:16:49.143918+00:00
+rapidgo_pipeline |              | validar_datos     | success | 2026-11-11T23:16:49.583151+00:00 | 2026-11-11T23:16:51.719088+00:00
+rapidgo_pipeline |              | control_calidad   | success | 2026-11-11T23:16:53.180963+00:00 | 2026-11-11T23:16:54.884070+00:00
+rapidgo_pipeline |              | consolidar_kpis   | success | 2026-11-11T23:16:55.377309+00:00 | 2026-11-11T23:16:57.408958+00:00
+rapidgo_pipeline |              | generar_reporte   | success | 2026-11-11T23:16:58.901514+00:00 | 2026-11-11T23:17:00.894110+00:00
+==> 6/6 Reporte final
+# Reporte RapidGo - Preparación de pedidos
+- **Run:** `e2e__20261111T181638`
+- **Generado (UTC):** 2026-11-11 23:17:00
+## Resumen del pipeline
+| Etapa | Resultado |
+|-------|-----------|
+| Raw | 16 archivo(s), 500 registros |
+| Validación | 500 válidos / 0 inválidos (100.0%) |
+| Calidad | 500 limpios, 0 duplicados eliminados, aprobado = True |
+| KPIs | 12 comercios, 500 pedidos |
+## Indicadores globales
+- Demora promedio: **20.79 min** (umbral 15.0 min)
+- Pedidos con alerta de saturación: **340** (68.0%)
+- Comercios críticos (> 75.0% de pedidos con alerta): **COM-011, COM-012**
+## KPIs por comercio
+| Comercio | Pedidos | Demora prom. (min) | Demora p90 (min) | Cola prom. | Alertas tiempo | Alertas cola | % alertas | Estado |
+|----------|---------|--------------------|------------------|------------|----------------|--------------|-----------|--------|
+| COM-011 | 83 | 32.77 | 40.16 | 9.76 | 83 | 49 | 100.0% | CRITICO |
+| COM-012 | 100 | 28.76 | 37.22 | 12.39 | 98 | 80 | 100.0% | CRITICO |
+| COM-001 | 27 | 15.74 | 21.08 | 3.3 | 17 | 0 | 62.96% | OBSERVACION |
+| COM-009 | 30 | 15.26 | 19.92 | 3.23 | 17 | 0 | 56.67% | OBSERVACION |
+| COM-003 | 38 | 15.39 | 21.49 | 3.32 | 21 | 0 | 55.26% | OBSERVACION |
+| COM-006 | 29 | 16.05 | 20.92 | 3.48 | 16 | 0 | 55.17% | OBSERVACION |
+| COM-004 | 39 | 14.9 | 19.36 | 3.31 | 21 | 0 | 53.85% | OBSERVACION |
+| COM-008 | 25 | 14.91 | 18.68 | 3.16 | 13 | 0 | 52.0% | OBSERVACION |
+| COM-005 | 33 | 15.39 | 21.06 | 4.06 | 17 | 0 | 51.52% | OBSERVACION |
+| COM-007 | 41 | 14.96 | 20.7 | 3.17 | 18 | 0 | 43.9% | OBSERVACION |
+| COM-010 | 26 | 14.9 | 19.9 | 2.92 | 9 | 0 | 34.62% | OBSERVACION |
+| COM-002 | 29 | 13.81 | 17.64 | 3.59 | 8 | 0 | 27.59% | OBSERVACION |
+Pipeline completado. Reporte: C:\Users\barre\Documents\8 semestre\Big data\RapidGo\RapidGo\datalake\curated\reportes\reporte-e2e__20261111T181638.md

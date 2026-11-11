@@ -77,6 +77,14 @@ python -m producer --eventos 100 --intervalo 0.2
 pytest -v
 ```
 
+### Pipeline completo end-to-end (Issue #15)
+
+```powershell
+.\scripts\pipeline_e2e.ps1     # Docker -> producer -> Kafka -> Spark -> Data Lake -> Airflow -> reporte
+```
+
+Paso a paso, problemas encontrados y evidencia: [`docs/integracion.md`](docs/integracion.md).
+
 ### Orquestación con Airflow (Semana 3)
 
 ```powershell
@@ -91,6 +99,8 @@ UI: <http://localhost:8085> (usuario `admin` / contraseña `admin`).
 | Producer / Kafka | [`producer/README.md`](producer/README.md) |
 | Contrato del evento | [`samples/contrato_evento_variante6.schema.json`](samples/contrato_evento_variante6.schema.json) |
 | Decisión topic / key / particiones | [`docs/decisions/ADR-001-kafka.md`](docs/decisions/ADR-001-kafka.md) |
+| Spark Structured Streaming | [`spark/streaming_variante6.py`](spark/streaming_variante6.py) · [`docs/decisions/ADR-002-streaming.md`](docs/decisions/ADR-002-streaming.md) |
+| Integración end-to-end | [`docs/integracion.md`](docs/integracion.md) |
 | Airflow / DAG `rapidgo_pipeline` | [`airflow/README.md`](airflow/README.md) |
 | Decisión de orquestación | [`docs/decisions/ADR-003-airflow.md`](docs/decisions/ADR-003-airflow.md) |
 

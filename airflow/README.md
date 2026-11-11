@@ -27,7 +27,7 @@ verificar_raw ──► validar_datos ──► control_calidad ──► consol
 | XCom | TaskFlow API: cada task devuelve un `dict` (se guarda como XCom y se pasa a la siguiente). `notificar_alertas` usa `ti.xcom_pull` explícito. |
 | Dependencias | Definidas por el paso de XCom entre tasks + `generar_reporte >> notificar_alertas` |
 | Programación | `@daily`, `catchup=False`, `max_active_runs=1` |
-| Parámetros | `generar_muestra` (bool, por defecto `true`), `cantidad_muestra` (int, 200) |
+| Parámetros | `generar_muestra` (bool, por defecto `false`; solo para demos sin streaming), `cantidad_muestra` (int, 200) |
 
 La lógica de negocio está en `dags/rapidgo_lib/tareas.py` (no importa
 Airflow) y se prueba con `pytest` en `tests/test_airflow_tareas.py`.
@@ -95,16 +95,18 @@ aparece pausado, activarlo con el interruptor.
 docker exec rapidgo-airflow airflow dags trigger rapidgo_pipeline
 
 # Con parámetros
-docker exec rapidgo-airflow airflow dags trigger rapidgo_pipeline --conf '{\"generar_muestra\": false}'
+# Demo sin streaming: si Raw está vacía, genera eventos simulados
+docker exec rapidgo-airflow airflow dags trigger rapidgo_pipeline --conf '{\"generar_muestra\": true}'
 
 # Ver estado de las ejecuciones y de cada task
 docker exec rapidgo-airflow airflow dags list-runs rapidgo_pipeline
 docker exec rapidgo-airflow airflow tasks states-for-dag-run rapidgo_pipeline <run_id>
 ```
 
-Para procesar datos reales en lugar de la muestra: ejecutar primero el
-producer y el job de Spark (que escriben en `datalake/raw/preparacion_pedidos`)
-y lanzar el DAG con `generar_muestra=false`.
+El DAG procesa lo que Spark dejó en `datalake/raw/preparacion_pedidos`
+(ver el flujo completo en [`docs/integracion.md`](../docs/integracion.md)).
+Si Raw está vacía la task `verificar_raw` falla, salvo que se lance con
+`generar_muestra=true`.
 
 El reporte queda en `datalake/curated/reportes/reporte-<run_id>.md`.
 

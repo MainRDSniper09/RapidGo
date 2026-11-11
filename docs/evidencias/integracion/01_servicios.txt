@@ -1,0 +1,11 @@
+$ docker compose ps
+NAME                       IMAGE                                                                     STATUS                   PORTS
+rapidgo-airflow            sha256:9ea91305e867a98a16e5c1e900b4f00237ee8e16cdd2cab0af41004066635c86   Up 7 minutes (healthy)   0.0.0.0:8085->8080/tcp, [::]:8085->8080/tcp
+rapidgo-airflow-postgres   postgres:16                                                               Up 7 minutes (healthy)   5432/tcp
+rapidgo-kafka              apache/kafka:4.3.1                                                        Up 7 minutes (healthy)   0.0.0.0:9092->9092/tcp, [::]:9092->9092/tcp
+rapidgo-spark-master       spark:4.2.0-python3                                                       Up 6 minutes             0.0.0.0:7077->7077/tcp, [::]:7077->7077/tcp, 0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+rapidgo-spark-worker-1     spark:4.2.0-python3                                                       Up 6 minutes             0.0.0.0:8081->8081/tcp, [::]:8081->8081/tcp
+rapidgo-spark-worker-2     spark:4.2.0-python3                                                       Up 6 minutes             0.0.0.0:8082->8081/tcp, [::]:8082->8081/tcp
+
+$ docker compose ps -a kafka-init
+rapidgo-kafka-init	Exited (0) 6 minutes ago

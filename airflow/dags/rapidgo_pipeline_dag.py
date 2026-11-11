@@ -1,5 +1,5 @@
 """
-DAG de orquestación del pipeline RapidGo - Variante 6 (Issue #13).
+DAG de orquestación del pipeline RapidGo - Variante 6 (Issues #12, #13 y #15).
 
 Coordina las tareas batch y de control posteriores al procesamiento
 streaming (Kafka -> Spark -> Data Lake/raw):
@@ -50,8 +50,10 @@ default_args = {
     is_paused_upon_creation=False,
     tags=["rapidgo", "variante6", "batch", "calidad"],
     params={
+        # False por defecto (Issue #15): en el pipeline integrado los datos
+        # llegan de Spark; la muestra solo se activa a mano para demos.
         "generar_muestra": Param(
-            True,
+            False,
             type="boolean",
             description="Si la capa Raw está vacía, genera eventos simulados con el producer.",
         ),

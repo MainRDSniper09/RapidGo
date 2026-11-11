@@ -1,0 +1,30 @@
+# Validación cruzada Spark (streaming) vs Airflow (batch)
+
+             total_pedidos  demora_promedio_min  alertas_saturacion  porcentaje_alertas       estado  pedidos  demora_prom  alertas
+comercio_id                                                                                                                        
+COM-011                 53                32.54                  53              100.00      CRITICO       53        32.54       53
+COM-012                 75                28.70                  75              100.00      CRITICO       75        28.70       75
+COM-001                 14                17.02                  10               71.43  OBSERVACION       14        17.02       10
+COM-006                 23                16.30                  15               65.22  OBSERVACION       23        16.30       15
+COM-009                 20                15.44                  13               65.00  OBSERVACION       20        15.44       13
+COM-003                 30                15.37                  17               56.67  OBSERVACION       30        15.37       17
+COM-008                 19                15.09                  10               52.63  OBSERVACION       19        15.09       10
+COM-007                 30                15.57                  15               50.00  OBSERVACION       30        15.57       15
+COM-004                 26                15.10                  13               50.00  OBSERVACION       26        15.10       13
+COM-005                 25                15.01                  12               48.00  OBSERVACION       25        15.01       12
+COM-002                 19                13.31                   5               26.32  OBSERVACION       19        13.31        5
+COM-010                 16                14.52                   4               25.00  OBSERVACION       16        14.52        4
+
+[OK] pedidos por comercio iguales
+[OK] demora promedio igual (±0.01)
+[OK] alertas por comercio iguales
+[OK] total alertas Airflow == filas alertas_streaming de Spark
+[OK] regla tiempo (demora_min > 15)
+[OK] regla backlog (pedidos_en_cola >= 10)
+[OK] comercios CRITICO = COM-011, COM-012 (los críticos del simulador)
+
+Total pedidos=350  alertas=242  (69.14%)
+tipo_alerta
+TIEMPO_EXCEDIDO    150
+TIEMPO_Y_COLA       91
+BACKLOG              1
