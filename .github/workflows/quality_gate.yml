@@ -3,11 +3,15 @@ name: RapidGo Quality Gate Final
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # Permite que tú y tu equipo lo ejecuten manualmente
+  workflow_dispatch:
 
 jobs:
   quality-gate:
     runs-on: ubuntu-latest
+    # SOLUCIÓN DEFINITIVA: Declaramos la ruta para que Python encuentre rapidgo_lib
+    env:
+      PYTHONPATH: ${{ github.workspace }}/airflow/dags
+      
     steps:
       - name: Checkout del código
         uses: actions/checkout@v3
