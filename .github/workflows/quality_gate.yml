@@ -31,7 +31,7 @@ jobs:
 
       - name: Validar importación del DAG de Airflow
         run: |
-          python -c "from airflow.models import DagBag; bag = DagBag(dag_folder='airflow/dags/', include_examples=False); assert len(bag.import_errors) == 0, f'Errores en DAGs: {bag.import_errors}'"
+          python -c "from airflow.models import DagBag; bag = DagBag(dag_folder='airflow/dags/'); assert len(bag.import_errors) == 0, f'Errores en DAGs: {bag.import_errors}'"
 
       - name: Validar Docker Compose
         run: docker-compose config -q
