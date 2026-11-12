@@ -1,0 +1,36 @@
+name: RapidGo Quality Gate Final
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: 
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest flake8 apache-airflow
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Validaciones de sintaxis Python
+        run: flake8 dags/ rapidgo_lib/ --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Ejecutar pytest (Reglas de negocio y Calidad de datos)
+        run: pytest
+
+      - name: Validar importación del DAG de Airflow
+        run: python -c "from airflow.models import DagBag; bag = DagBag(dag_folder='dags/', include_examples=False); assert len(bag.import_errors) == 0"
+
+      - name: Validar Docker Compose
+        run: docker-compose config -q
